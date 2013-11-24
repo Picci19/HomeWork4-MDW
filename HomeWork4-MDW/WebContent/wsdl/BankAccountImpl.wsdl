@@ -1,0 +1,271 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions targetNamespace="http://servicesAndLogic" xmlns:apachesoap="http://xml.apache.org/xml-soap" xmlns:impl="http://servicesAndLogic" xmlns:intf="http://servicesAndLogic" xmlns:tns1="http://DefaultNamespace" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+<!--WSDL created by Apache Axis version: 1.4
+Built on Apr 22, 2006 (06:55:48 PDT)-->
+ <wsdl:types>
+  <schema elementFormDefault="qualified" targetNamespace="http://servicesAndLogic" xmlns="http://www.w3.org/2001/XMLSchema">
+   <import namespace="http://DefaultNamespace"/>
+   <element name="validateExistence">
+    <complexType>
+     <sequence>
+      <element name="accountNumber" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="validateExistenceResponse">
+    <complexType>
+     <sequence>
+      <element name="validateExistenceReturn" type="xsd:boolean"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="validateAccountBalance">
+    <complexType>
+     <sequence>
+      <element name="accountNumber" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="validateAccountBalanceResponse">
+    <complexType>
+     <sequence>
+      <element name="validateAccountBalanceReturn" type="xsd:boolean"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="changeBalance">
+    <complexType>
+     <sequence>
+      <element name="accountNumber" type="xsd:string"/>
+      <element name="op" type="xsd:anyType"/>
+      <element name="amount" type="xsd:double"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="changeBalanceResponse">
+    <complexType/>
+   </element>
+   <element name="transfer">
+    <complexType>
+     <sequence>
+      <element name="from" type="xsd:string"/>
+      <element name="to" type="xsd:string"/>
+      <element name="amount" type="xsd:double"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="transferResponse">
+    <complexType>
+     <sequence>
+      <element name="transferReturn" type="xsd:boolean"/>
+     </sequence>
+    </complexType>
+   </element>
+  </schema>
+ </wsdl:types>
+
+   <wsdl:message name="validateAccountBalanceRequest">
+
+      <wsdl:part element="impl:validateAccountBalance" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="changeBalanceRequest">
+
+      <wsdl:part element="impl:changeBalance" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="changeBalanceResponse">
+
+      <wsdl:part element="impl:changeBalanceResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="transferResponse">
+
+      <wsdl:part element="impl:transferResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="transferRequest">
+
+      <wsdl:part element="impl:transfer" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="validateExistenceRequest">
+
+      <wsdl:part element="impl:validateExistence" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="validateAccountBalanceResponse">
+
+      <wsdl:part element="impl:validateAccountBalanceResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="validateExistenceResponse">
+
+      <wsdl:part element="impl:validateExistenceResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:portType name="BankAccountImpl">
+
+      <wsdl:operation name="validateExistence">
+
+         <wsdl:input message="impl:validateExistenceRequest" name="validateExistenceRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:validateExistenceResponse" name="validateExistenceResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="validateAccountBalance">
+
+         <wsdl:input message="impl:validateAccountBalanceRequest" name="validateAccountBalanceRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:validateAccountBalanceResponse" name="validateAccountBalanceResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="changeBalance">
+
+         <wsdl:input message="impl:changeBalanceRequest" name="changeBalanceRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:changeBalanceResponse" name="changeBalanceResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="transfer">
+
+         <wsdl:input message="impl:transferRequest" name="transferRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:transferResponse" name="transferResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+   </wsdl:portType>
+
+   <wsdl:binding name="BankAccountImplSoapBinding" type="impl:BankAccountImpl">
+
+      <wsdlsoap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+
+      <wsdl:operation name="validateExistence">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="validateExistenceRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="validateExistenceResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="validateAccountBalance">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="validateAccountBalanceRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="validateAccountBalanceResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="changeBalance">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="changeBalanceRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="changeBalanceResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="transfer">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="transferRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="transferResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+   </wsdl:binding>
+
+   <wsdl:service name="BankAccountImplService">
+
+      <wsdl:port binding="impl:BankAccountImplSoapBinding" name="BankAccountImpl">
+
+         <wsdlsoap:address location="http://127.0.0.1:7001/Homework4-MDW/services/BankAccountImpl"/>
+
+      </wsdl:port>
+
+   </wsdl:service>
+
+</wsdl:definitions>

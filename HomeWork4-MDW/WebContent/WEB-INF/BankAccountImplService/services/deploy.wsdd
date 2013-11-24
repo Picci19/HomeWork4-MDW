@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?><!-- Use this file to deploy some handlers/chains and services      --><!-- Two ways to do this:                                           --><!--   java org.apache.axis.client.AdminClient deploy.wsdd          --><!--      after the axis server is running                          --><!-- or                                                             --><!--   java org.apache.axis.utils.Admin client|server deploy.wsdd   --><!--      from the same directory that the Axis engine runs         --><deployment xmlns="http://xml.apache.org/axis/wsdd/" xmlns:java="http://xml.apache.org/axis/wsdd/providers/java">
+
+  <!-- Services from BankAccountImplService WSDL service -->
+
+  <service name="BankAccountImpl" provider="java:RPC" style="wrapped" use="literal">
+      <parameter name="wsdlTargetNamespace" value="http://services"/>
+      <parameter name="wsdlServiceElement" value="BankAccountImplService"/>
+      <parameter name="schemaQualified" value="http://services"/>
+      <parameter name="wsdlServicePort" value="BankAccountImpl"/>
+      <parameter name="className" value="services.BankAccountImpl"/>
+      <parameter name="wsdlPortType" value="BankAccountImpl"/>
+      <parameter name="typeMappingVersion" value="1.2"/>
+      <operation xmlns:operNS="http://services" xmlns:retNS="http://services" xmlns:rtns="http://www.w3.org/2001/XMLSchema" name="validateExistence" qname="operNS:validateExistence" returnQName="retNS:validateExistenceReturn" returnType="rtns:boolean" soapAction="">
+        <parameter xmlns:pns="http://services" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:accountNumber" type="tns:int"/>
+      </operation>
+      <operation xmlns:operNS="http://services" xmlns:retNS="http://services" xmlns:rtns="http://www.w3.org/2001/XMLSchema" name="transfer" qname="operNS:transfer" returnQName="retNS:transferReturn" returnType="rtns:boolean" soapAction="">
+        <parameter xmlns:pns="http://services" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:from" type="tns:int"/>
+        <parameter xmlns:pns="http://services" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:to" type="tns:int"/>
+        <parameter xmlns:pns="http://services" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:amount" type="tns:double"/>
+      </operation>
+      <operation xmlns:operNS="http://services" name="changeBalance" qname="operNS:changeBalance" soapAction="">
+        <parameter xmlns:pns="http://services" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:accountNumber" type="tns:int"/>
+        <parameter xmlns:pns="http://services" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:op" type="tns:anyType"/>
+        <parameter xmlns:pns="http://services" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:amount" type="tns:double"/>
+      </operation>
+      <operation xmlns:operNS="http://services" xmlns:retNS="http://services" xmlns:rtns="http://www.w3.org/2001/XMLSchema" name="validateAccountBalance" qname="operNS:validateAccountBalance" returnQName="retNS:validateAccountBalanceReturn" returnType="rtns:boolean" soapAction="">
+        <parameter xmlns:pns="http://services" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:accountNumber" type="tns:int"/>
+      </operation>
+      <parameter name="allowedMethods" value="changeBalance validateExistence transfer validateAccountBalance"/>
+
+      <typeMapping xmlns:ns="http://services" qname="ns:&gt;changeBalanceResponse" type="java:services.ChangeBalanceResponse" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle=""/>
+      <typeMapping xmlns:ns="http://services" qname="ns:&gt;validateAccountBalance" type="java:services.ValidateAccountBalance" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle=""/>
+      <typeMapping xmlns:ns="http://services" qname="ns:&gt;validateAccountBalanceResponse" type="java:services.ValidateAccountBalanceResponse" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle=""/>
+  </service>
+</deployment>
